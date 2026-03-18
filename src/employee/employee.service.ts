@@ -19,6 +19,12 @@ export class EmployeeService {
     await this.cacheManager.del('employees');
     return saved;
   }
+  async createBulk(dtos: CreateEmployeeDto[]) {
+    const employees = this.employeeRepository.create(dtos);
+    const saved = await this.employeeRepository.save(employees);
+    await this.cacheManager.del('employees');
+    return saved;
+  }
   async findAll() {
     const cached = await this.cacheManager.get<Employee[]>('employees');
     if (cached) return cached;

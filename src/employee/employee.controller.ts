@@ -9,6 +9,11 @@ export class EmployeeController {
   create(@Body() dto: CreateEmployeeDto) {
     return this.employeeService.create(dto);
   }
+  @Post('bulk')
+  createBulk(@Body() dtos: CreateEmployeeDto[]) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return this.employeeService.createBulk(dtos);
+  }
   @Get()
   findAll() {
     return this.employeeService.findAll();
