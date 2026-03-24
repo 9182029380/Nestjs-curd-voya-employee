@@ -1,23 +1,32 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
-    CacheModule.register({ isGlobal: true, ttl: 60000 }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+
+    CacheModule.register({
+      isGlobal: true,
+    }),
+
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'nestjs_db',
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '3306', 10), // ✅ fix
+      username: process.env.DB_USERNAME || 'root',
+      password: process.env.DB_PASSWORD || '',
+      database: process.env.DB_DATABASE || 'test',
       autoLoadEntities: true,
-      synchronize: true, // disable in production
+      synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
+
     EmployeeModule,
   ],
   controllers: [AppController],
