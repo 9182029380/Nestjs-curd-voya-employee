@@ -23,7 +23,8 @@ import { EmployeeModule } from './employee/employee.module';
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'employeedb',
-      autoLoadEntities: true,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'], // ← ADD THIS
+      autoLoadEntities: true, // ← KEEP THIS TOO
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
 
