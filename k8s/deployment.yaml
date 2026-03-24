@@ -22,7 +22,7 @@ spec:
       containers:
         - name: nestjs-employee-app
           # ===== CHANGE: replace 'your_dockerhub_username' =====
-          image: your_dockerhub_username/nestjs-employee-crud:IMAGE_TAG
+          image: sharath198/nestjs-employee-crud:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

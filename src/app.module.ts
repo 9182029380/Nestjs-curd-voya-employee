@@ -22,7 +22,7 @@ import { EmployeeModule } from './employee/employee.module';
       port: parseInt(process.env.DB_PORT || '3306', 10), // ✅ fix
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || '',
-      database: process.env.DB_DATABASE || 'test',
+      database: process.env.DB_DATABASE || 'employeedb',
       autoLoadEntities: true,
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
