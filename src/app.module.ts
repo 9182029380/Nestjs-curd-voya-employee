@@ -21,7 +21,7 @@ import { EmployeeModule } from './employee/employee.module';
       host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT || '3306', 10), // ✅ fix
       username: process.env.DB_USERNAME || 'root',
-      password: process.env.DB_PASSWORD || '',
+      password: process.env.DB_PASSWORD || 'root',
       database: process.env.DB_DATABASE || 'employeedb',
       entities: [__dirname + '/**/*.entity{.ts,.js}'], // ← ADD THIS
       autoLoadEntities: true, // ← KEEP THIS TOO
