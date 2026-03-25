@@ -40,4 +40,13 @@ export class EmployeeService {
     if (employee) await this.cacheManager.set(key, employee);
     return employee;
   }
+  async findByQuery(email?: string, phone?: string, position?: string) {
+    return this.employeeRepository.find({
+      where: [
+        ...(email ? [{ email }] : []),
+        ...(phone ? [{ phone }] : []),
+        ...(position ? [{ position }] : []),
+      ],
+    });
+  }
 }

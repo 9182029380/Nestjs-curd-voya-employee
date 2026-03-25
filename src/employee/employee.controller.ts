@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 
@@ -17,6 +17,15 @@ export class EmployeeController {
   @Get()
   findAll() {
     return this.employeeService.findAll();
+  }
+  @Get('search')
+  findByQuery(
+    @Query('email') email?: string,
+    @Query('phone') phone?: string,
+    @Query('position') position?: string,
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+    return this.employeeService.findByQuery(email, phone, position);
   }
   @Get(':id')
   findOne(@Param('id') id: number) {
